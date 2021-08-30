@@ -106,5 +106,4 @@ if desarrollo:
     st.markdown(desarrollado)
 
 ##--- Pie del menú de la izquierda
-st.sidebar.markdown('Un proyecto personal de **Erebyel** (María Reyes Rocío Pérez).')
-st.sidebar.markdown('Vuelve a la web: [www.erebyel.es](http://www.erebyel.es)')
+st.sidebar.markdown('Un proyecto personal de [**Erebyel** (María Reyes Rocío Pérez)](http://www.erebyel.es).')
