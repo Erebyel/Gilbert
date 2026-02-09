@@ -192,7 +192,7 @@ if st.session_state["panel_activo"] == "proyecto":
     st.markdown('<div class="card">' + sobre_proyecto + '</div>', unsafe_allow_html=True)
 elif st.session_state["panel_activo"] == "desarrollo":
     st.markdown('<div class="card">' + desarrollado + '</div>', unsafe_allow_html=True)
-elif:
+else:
     st.markdown('<div class="card">' + reglas + '</div>', unsafe_allow_html=True)
 
 ##--- Pie del menú de la izquierda
