@@ -183,9 +183,6 @@ with control_col1:
 with control_col2:
     comenzar = st.button('🎲 Descubre una nueva idea')
 
-if mostrar_reglas:
-    st.session_state["panel_activo"] = "reglas"
-
 if comenzar:
     guardar_resultado(fichero)
 
@@ -195,8 +192,8 @@ if st.session_state["panel_activo"] == "proyecto":
     st.markdown('<div class="card">' + sobre_proyecto + '</div>', unsafe_allow_html=True)
 elif st.session_state["panel_activo"] == "desarrollo":
     st.markdown('<div class="card">' + desarrollado + '</div>', unsafe_allow_html=True)
-else:
+elif:
     st.markdown('<div class="card">' + reglas + '</div>', unsafe_allow_html=True)
 
 ##--- Pie del menú de la izquierda
-st.sidebar.markdown('Un proyecto personal de [**Erebyel** (María Reyes Rocío Pérez)](http://www.erebyel.es).')
+st.sidebar.markdown('Un proyecto personal de [**Erebyel**](http://www.erebyel.es).')
