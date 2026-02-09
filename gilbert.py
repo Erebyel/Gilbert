@@ -138,38 +138,43 @@ fichero = st.sidebar.selectbox("Selecciona la dificultad:", ('fácil', 'normal',
 
 #--   Botones
 comenzar = st.sidebar.button('🎲 Generar')
-saber_mas = st.sidebar.button('📜 Reglas del juego')
 proyecto = st.sidebar.button('ℹ️ Detalles del proyecto')
 desarrollo = st.sidebar.button('🛠️ Desarrollo de Gilbert')
 st.sidebar.markdown('<div class="sidebar-note">Tip: combina la idea con tus propias referencias para enriquecer el texto.</div>', unsafe_allow_html=True)
 
 ##--- Rutina del programa
-if comenzar:
-    gilbert = juego(fichero)
-    if fichero == 'fácil':
-        st.markdown('<div class="section-title">La idea para tu próximo relato</div>', unsafe_allow_html=True)
+def guardar_resultado(nivel):
+    st.session_state["gilbert_nivel"] = nivel
+    st.session_state["gilbert_resultado"] = juego(nivel)
+
+def mostrar_resultado():
+    nivel = st.session_state.get("gilbert_nivel")
+    gilbert = st.session_state.get("gilbert_resultado")
+    if not nivel or not gilbert:
+        return
+    st.markdown('<div class="section-title">La idea para tu próximo relato</div>', unsafe_allow_html=True)
+    if nivel == 'fácil':
         st.markdown(f'<div class="card"><div class="highlight">{gilbert}</div></div>', unsafe_allow_html=True)
-    elif fichero == 'normal':
-        st.markdown('<div class="section-title">La idea para tu próximo relato</div>', unsafe_allow_html=True)
-        st.markdown(f'<div class="card"><div class="highlight">{gilbert[0]}</div></div>', unsafe_allow_html=True)
-        st.markdown('<div class="section-title">Palabras obligatorias</div>', unsafe_allow_html=True)
-        st.markdown(
-            '<div class="card">' + ''.join(f'<span class="chip">{palabra}</span>' for palabra in gilbert[1].split(", ")) + '</div>',
-            unsafe_allow_html=True,
-        )
-    else:
-        st.markdown('<div class="section-title">La idea para tu próximo relato</div>', unsafe_allow_html=True)
-        st.markdown(f'<div class="card"><div class="highlight">{gilbert[0]}</div></div>', unsafe_allow_html=True)
-        st.markdown('<div class="section-title">Palabras obligatorias</div>', unsafe_allow_html=True)
-        st.markdown(
-            '<div class="card">' + ''.join(f'<span class="chip">{palabra}</span>' for palabra in gilbert[1].split(", ")) + '</div>',
-            unsafe_allow_html=True,
-        )
+        return
+    st.markdown(f'<div class="card"><div class="highlight">{gilbert[0]}</div></div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title">Palabras obligatorias</div>', unsafe_allow_html=True)
+    st.markdown(
+        '<div class="card">' + ''.join(f'<span class="chip">{palabra}</span>' for palabra in gilbert[1].split(", ")) + '</div>',
+        unsafe_allow_html=True,
+    )
+    if nivel == 'difícil':
         st.markdown('<div class="section-title">Reto adicional</div>', unsafe_allow_html=True)
         st.markdown(f'<div class="card"><div class="highlight">{gilbert[2]}</div></div>', unsafe_allow_html=True)
 
-if saber_mas:
-    st.markdown('<div class="card">' + reglas + '</div>', unsafe_allow_html=True)
+if comenzar:
+    guardar_resultado(fichero)
+
+mostrar_resultado()
+
+if st.button('Descubre una nueva idea'):
+    guardar_resultado('difícil')
+    mostrar_resultado()
+st.markdown('<div class="card">' + reglas + '</div>', unsafe_allow_html=True)
 
 if proyecto:
     st.markdown('<div class="card">' + sobre_proyecto + '</div>', unsafe_allow_html=True)
