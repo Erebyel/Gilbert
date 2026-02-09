@@ -3,6 +3,7 @@
 from pathlib import Path
 
 import pandas as pd
+from pandas import DataFrame
 import streamlit as st
 import numpy as np
 
