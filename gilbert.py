@@ -172,7 +172,7 @@ if proyecto:
 if desarrollo:
     st.session_state["panel_activo"] = "desarrollo"
 
-control_col1, control_col2, control_col3, control_col4 = st.columns([3, 1.4])
+control_col1, control_col2 = st.columns([3, 1.4])
 with control_col1:
     fichero = st.radio(
         "Selecciona la dificultad:",
