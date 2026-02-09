@@ -7,6 +7,8 @@ from pandas import DataFrame
 import streamlit as st
 import numpy as np
 
+st.set_page_config(page_title="Gilbert.dice", page_icon="📝", layout="centered")
+
 BASE_DIR = Path(__file__).resolve().parent
 
 ##---------------------- Base de datos
@@ -71,49 +73,95 @@ with (BASE_DIR / 'desarrollo.md').open("r", encoding="utf-8") as texto:
     desarrollado = texto.read()
 
 ##---------------------- Aplicación Streamlit
+st.markdown(
+    """
+    <style>
+    .main-title {font-size: 2.6rem; font-weight: 800; margin-bottom: 0.2rem;}
+    .subtitle {font-size: 1.15rem; color: #4f4f4f; margin-bottom: 1.5rem;}
+    .section-title {font-size: 1.2rem; font-weight: 700; margin-top: 1.2rem;}
+    .card {
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 14px;
+        padding: 1rem 1.2rem;
+        box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+        margin: 0.6rem 0 1rem 0;
+    }
+    .highlight {
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: #111827;
+    }
+    .chip {
+        display: inline-block;
+        background: #eef2ff;
+        color: #3730a3;
+        font-weight: 600;
+        padding: 0.2rem 0.6rem;
+        border-radius: 999px;
+        font-size: 0.85rem;
+        margin-right: 0.35rem;
+        margin-bottom: 0.35rem;
+    }
+    .sidebar-note {
+        font-size: 0.9rem;
+        color: #6b7280;
+        margin-top: 0.6rem;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 ##--- Textos
-st.title('Gilbert.dice')
-st.header('Generador de frases aleatorias')
-st.markdown('### Podrás utilizarlas para inspirarte, trabajar la imaginación y perder el miedo a la página en blanco.')
+st.markdown('<div class="main-title">Gilbert.dice</div>', unsafe_allow_html=True)
+st.markdown('<div class="subtitle">Generador de frases aleatorias para inspirarte, trabajar la imaginación y perder el miedo a la página en blanco.</div>', unsafe_allow_html=True)
 
 ##--- Menú de la izquierda
 st.sidebar.title("Acepta el reto y pincha en comenzar")
 st.sidebar.write('Elige la dificultad y enfréntate a la página en blanco.')
-fichero = st.sidebar.selectbox("Selecciona la dificultad:",('fácil', 'normal', 'difícil'))
+fichero = st.sidebar.selectbox("Selecciona la dificultad:", ('fácil', 'normal', 'difícil'))
 
 #--   Botones
-comenzar = st.sidebar.button('Generar')
-saber_mas = st.sidebar.button('Reglas del juego')
-proyecto = st.sidebar.button('Detalles del proyecto')
-desarrollo = st.sidebar.button('Desarrollo de Gilbert')
+comenzar = st.sidebar.button('🎲 Generar')
+saber_mas = st.sidebar.button('📜 Reglas del juego')
+proyecto = st.sidebar.button('ℹ️ Detalles del proyecto')
+desarrollo = st.sidebar.button('🛠️ Desarrollo de Gilbert')
+st.sidebar.markdown('<div class="sidebar-note">Tip: combina la idea con tus propias referencias para enriquecer el texto.</div>', unsafe_allow_html=True)
 
 ##--- Rutina del programa
 if comenzar:
     gilbert = juego(fichero)
     if fichero == 'fácil':
-        st.markdown('La idea para tu próximo relato es:')
-        st.markdown('**' + gilbert + '**\n')
+        st.markdown('<div class="section-title">La idea para tu próximo relato</div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="card"><div class="highlight">{gilbert}</div></div>', unsafe_allow_html=True)
     elif fichero == 'normal':
-        st.markdown('La idea para tu próximo relato es:')
-        st.markdown('**' + gilbert[0] + '**\n')
-        st.markdown('El texto debe incluir estas palabras:')
-        st.markdown('**' + gilbert[1] + '**\n')
+        st.markdown('<div class="section-title">La idea para tu próximo relato</div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="card"><div class="highlight">{gilbert[0]}</div></div>', unsafe_allow_html=True)
+        st.markdown('<div class="section-title">Palabras obligatorias</div>', unsafe_allow_html=True)
+        st.markdown(
+            '<div class="card">' + ''.join(f'<span class="chip">{palabra}</span>' for palabra in gilbert[1].split(", ")) + '</div>',
+            unsafe_allow_html=True,
+        )
     else:
-        st.markdown('La idea para tu próximo relato es:')
-        st.markdown('**' + gilbert[0] + '**\n')
-        st.markdown('El texto debe incluir estas palabras:')
-        st.markdown('**' + gilbert[1] + '**\n')
-        st.markdown('Además, debes tratar de cumplir con el siguiente reto:')
-        st.markdown('**' + gilbert[2] + '**\n')
+        st.markdown('<div class="section-title">La idea para tu próximo relato</div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="card"><div class="highlight">{gilbert[0]}</div></div>', unsafe_allow_html=True)
+        st.markdown('<div class="section-title">Palabras obligatorias</div>', unsafe_allow_html=True)
+        st.markdown(
+            '<div class="card">' + ''.join(f'<span class="chip">{palabra}</span>' for palabra in gilbert[1].split(", ")) + '</div>',
+            unsafe_allow_html=True,
+        )
+        st.markdown('<div class="section-title">Reto adicional</div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="card"><div class="highlight">{gilbert[2]}</div></div>', unsafe_allow_html=True)
 
 if saber_mas:
-    st.markdown(reglas)
+    st.markdown('<div class="card">' + reglas + '</div>', unsafe_allow_html=True)
 
 if proyecto:
-    st.markdown(sobre_proyecto)
+    st.markdown('<div class="card">' + sobre_proyecto + '</div>', unsafe_allow_html=True)
 
 if desarrollo:
-    st.markdown(desarrollado)
+    st.markdown('<div class="card">' + desarrollado + '</div>', unsafe_allow_html=True)
 
 ##--- Pie del menú de la izquierda
 st.sidebar.markdown('Un proyecto personal de [**Erebyel** (María Reyes Rocío Pérez)](http://www.erebyel.es).')
