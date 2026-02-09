@@ -7,6 +7,8 @@ from pandas import DataFrame
 import streamlit as st
 import numpy as np
 
+st.set_page_config(page_title="Gilbert.dice", page_icon="📝", layout="centered")
+
 BASE_DIR = Path(__file__).resolve().parent
 
 ##---------------------- Base de datos
