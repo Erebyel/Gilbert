@@ -140,7 +140,6 @@ fichero = st.sidebar.selectbox("Selecciona la dificultad:", ('fácil', 'normal',
 comenzar = st.sidebar.button('🎲 Generar')
 proyecto = st.sidebar.button('ℹ️ Detalles del proyecto')
 desarrollo = st.sidebar.button('🛠️ Desarrollo de Gilbert')
-st.sidebar.markdown('<div class="sidebar-note">Tip: combina la idea con tus propias referencias para enriquecer el texto.</div>', unsafe_allow_html=True)
 
 ##--- Rutina del programa
 def guardar_resultado(nivel):
@@ -166,6 +165,8 @@ def mostrar_resultado():
         st.markdown('<div class="section-title">Reto adicional</div>', unsafe_allow_html=True)
         st.markdown(f'<div class="card"><div class="highlight">{gilbert[2]}</div></div>', unsafe_allow_html=True)
 
+if "panel_activo" not in st.session_state:
+    st.session_state["panel_activo"] = "reglas"
 if comenzar:
     guardar_resultado(fichero)
 
@@ -177,10 +178,44 @@ if st.button('Descubre una nueva idea'):
 st.markdown('<div class="card">' + reglas + '</div>', unsafe_allow_html=True)
 
 if proyecto:
-    st.markdown('<div class="card">' + sobre_proyecto + '</div>', unsafe_allow_html=True)
+    st.session_state["panel_activo"] = "proyecto"
 
 if desarrollo:
+    st.session_state["panel_activo"] = "desarrollo"
+
+control_col1, control_col2, control_col3, control_col4 = st.columns([2.4, 1, 1.4, 1.1])
+with control_col1:
+    fichero = st.radio(
+        "Selecciona la dificultad:",
+        ('fácil', 'normal', 'difícil'),
+        horizontal=True,
+        label_visibility="collapsed",
+    )
+with control_col2:
+    comenzar = st.button('🎲 Generar')
+with control_col3:
+    nueva_idea = st.button('Descubre una nueva idea')
+with control_col4:
+    mostrar_reglas = st.button('📜 Reglas del juego')
+
+if mostrar_reglas:
+    st.session_state["panel_activo"] = "reglas"
+
+if comenzar:
+    guardar_resultado(fichero)
+
+mostrar_resultado()
+
+if nueva_idea:
+    guardar_resultado('difícil')
+    mostrar_resultado()
+
+if st.session_state["panel_activo"] == "proyecto":
+    st.markdown('<div class="card">' + sobre_proyecto + '</div>', unsafe_allow_html=True)
+elif st.session_state["panel_activo"] == "desarrollo":
     st.markdown('<div class="card">' + desarrollado + '</div>', unsafe_allow_html=True)
+else:
+    st.markdown('<div class="card">' + reglas + '</div>', unsafe_allow_html=True)
 
 ##--- Pie del menú de la izquierda
 st.sidebar.markdown('Un proyecto personal de [**Erebyel** (María Reyes Rocío Pérez)](http://www.erebyel.es).')
