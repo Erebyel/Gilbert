@@ -191,8 +191,6 @@ if mostrar_reglas:
 
 mostrar_resultado()
 
-st.divider()
-
 if st.session_state["panel_activo"] == "proyecto":
     st.markdown('<div class="card">' + sobre_proyecto + '</div>', unsafe_allow_html=True)
 elif st.session_state["panel_activo"] == "desarrollo":
