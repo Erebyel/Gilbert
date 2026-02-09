@@ -137,7 +137,8 @@ st.markdown('<div class="subtitle">Generador de frases aleatorias para inspirart
 #--   Botones
 proyecto = st.sidebar.button('ℹ️ Detalles del proyecto')
 desarrollo = st.sidebar.button('🛠️ Desarrollo de Gilbert')
-mostrar_reglas = st.button('📜 Reglas del juego')
+st.sidebar.divider()
+mostrar_reglas = st.sidebar.button('📜 Reglas del juego')
 
 ##--- Rutina del programa
 def guardar_resultado(nivel):
@@ -190,6 +191,8 @@ if mostrar_reglas:
     st.session_state["panel_activo"] = "reglas"
 
 mostrar_resultado()
+
+st.divider()
 
 if st.session_state["panel_activo"] == "proyecto":
     st.markdown('<div class="card">' + sobre_proyecto + '</div>', unsafe_allow_html=True)
