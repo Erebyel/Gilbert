@@ -73,8 +73,6 @@ with (BASE_DIR / 'desarrollo.md').open("r", encoding="utf-8") as texto:
     desarrollado = texto.read()
 
 ##---------------------- Aplicación Streamlit
-st.set_page_config(page_title="Gilbert.dice", page_icon="📝", layout="centered")
-
 st.markdown(
     """
     <style>
