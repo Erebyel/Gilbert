@@ -34,14 +34,14 @@ def palabras():
     '''Genera un listado de palabras aleatorio en base a adjetivos que debes utilizar en el
     desarrollo del texto; estas palabras pueden aparecer en todas sus variantes de género y número.'''
     palabras = []
-    for n in range(int(np.random.randint(1, high=11, size=1))):
-        palabras.append(frase['adjetivo masculino'][int(np.random.randint(len(frase['artículo']), size=1))])
+    for _ in range(np.random.randint(1, high=11)):
+        palabras.append(frase['adjetivo masculino'][np.random.randint(len(frase['artículo']))])
     return set(palabras)
 
 def reto():
     '''Lanza un reto aleatorio de los que existen dentro de la lista, para hacer más complicado
     (o facilitar a veces) la ejecución del relato.'''
-    return retos['Retos'][int(np.random.randint(len(retos['Retos']), size=1))]
+    return retos['Retos'][np.random.randint(len(retos['Retos']))]
 
 def dice():
     '''¡Devuelve la respuesta que ha generado Gilbert!'''
