@@ -86,6 +86,20 @@ st.markdown(
         padding: 1rem 1.2rem;
         box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
         margin: 0.6rem 0 1rem 0;
+        color: #111827;
+    }
+    .card h1,
+    .card h2,
+    .card h3,
+    .card h4,
+    .card h5,
+    .card h6,
+    .card p,
+    .card li,
+    .card strong,
+    .card em,
+    .card a {
+        color: #111827;
     }
     .highlight {
         font-size: 1.05rem;
