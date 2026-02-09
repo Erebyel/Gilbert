@@ -132,6 +132,12 @@ st.markdown('<div class="main-title">Gilbert.dice</div>', unsafe_allow_html=True
 st.markdown('<div class="subtitle">Generador de frases aleatorias para inspirarte, trabajar la imaginación y perder el miedo a la página en blanco.</div>', unsafe_allow_html=True)
 
 ##--- Menú de la izquierda
+st.sidebar.title("Acepta el reto y pincha en comenzar")
+st.sidebar.write('Elige la dificultad y enfréntate a la página en blanco.')
+fichero = st.sidebar.selectbox("Selecciona la dificultad:", ('fácil', 'normal', 'difícil'))
+
+#--   Botones
+comenzar = st.sidebar.button('🎲 Generar')
 proyecto = st.sidebar.button('ℹ️ Detalles del proyecto')
 desarrollo = st.sidebar.button('🛠️ Desarrollo de Gilbert')
 
@@ -161,6 +167,15 @@ def mostrar_resultado():
 
 if "panel_activo" not in st.session_state:
     st.session_state["panel_activo"] = "reglas"
+if comenzar:
+    guardar_resultado(fichero)
+
+mostrar_resultado()
+
+if st.button('Descubre una nueva idea'):
+    guardar_resultado('difícil')
+    mostrar_resultado()
+st.markdown('<div class="card">' + reglas + '</div>', unsafe_allow_html=True)
 
 if proyecto:
     st.session_state["panel_activo"] = "proyecto"
