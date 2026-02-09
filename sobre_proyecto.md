@@ -1,3 +1,5 @@
+No es una historia épica ni tampoco demasiado interesante, pero, bueno, a veces está bien tener pruebas que las ideas simples pueden dar lugar a herramientas no demasiado complejas que solventan un problema.
+
 En 2019 comencé un taller con amigos. Para dinamizarlo, preparé una caja con tarjetas divididas en tres grupos: **sustantivos**, **adjetivos** y **verbos**. La dinámica consistía en extraer una palabra de cada grupo y formar una frase del tipo: **sujeto** + **adjetivo** debe **verbo**. Esa frase funcionaba como una consigna abierta que orientaba el relato. En el primer taller descubrí que transportar la caja resultaba incómodo. Decidí trasladar la idea a un formato digital. Como entonces no sabía programar, la primera versión de Gilbert fue una hoja de Excel.
 
 Durante un *bootcamp* de Ciencia de Datos desarrollé una versión en Python 3 utilizando archivos `json`. Durante un tiempo fue un conjunto de funciones poco ordenadas en un cuaderno de Jupyter, versión que aún conservo como recordatorio del proceso de aprendizaje.
