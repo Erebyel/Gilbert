@@ -1,4 +1,3 @@
-## Bibliotecas
 Gilbert está desarrollado en Python 3 y utiliza las siguientes bibliotecas:
 
 - **NumPy**, para generar los números aleatorios con los que se seleccionan las palabras.
