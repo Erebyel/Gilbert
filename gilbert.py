@@ -131,15 +131,10 @@ st.markdown(
 st.markdown('<div class="main-title">Gilbert.dice</div>', unsafe_allow_html=True)
 st.markdown('<div class="subtitle">Generador de frases aleatorias para inspirarte, trabajar la imaginación y perder el miedo a la página en blanco.</div>', unsafe_allow_html=True)
 
-##--- Menú de la izquierda
-st.sidebar.title("Acepta el reto y pincha en comenzar")
-st.sidebar.write('Elige la dificultad y enfréntate a la página en blanco.')
-fichero = st.sidebar.selectbox("Selecciona la dificultad:", ('fácil', 'normal', 'difícil'))
-
 #--   Botones
-comenzar = st.sidebar.button('🎲 Generar')
 proyecto = st.sidebar.button('ℹ️ Detalles del proyecto')
 desarrollo = st.sidebar.button('🛠️ Desarrollo de Gilbert')
+mostrar_reglas = st.button('📜 Reglas del juego')
 
 ##--- Rutina del programa
 def guardar_resultado(nivel):
@@ -183,7 +178,7 @@ if proyecto:
 if desarrollo:
     st.session_state["panel_activo"] = "desarrollo"
 
-control_col1, control_col2, control_col3, control_col4 = st.columns([2.4, 1, 1.4, 1.1])
+control_col1, control_col2, control_col3, control_col4 = st.columns([3, 1.4])
 with control_col1:
     fichero = st.radio(
         "Selecciona la dificultad:",
@@ -192,11 +187,7 @@ with control_col1:
         label_visibility="collapsed",
     )
 with control_col2:
-    comenzar = st.button('🎲 Generar')
-with control_col3:
-    nueva_idea = st.button('Descubre una nueva idea')
-with control_col4:
-    mostrar_reglas = st.button('📜 Reglas del juego')
+    comenzar = st.button('🎲 Descubre una nueva idea')
 
 if mostrar_reglas:
     st.session_state["panel_activo"] = "reglas"
