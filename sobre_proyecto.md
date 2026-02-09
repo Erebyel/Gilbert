@@ -1,12 +1,10 @@
-## Contexto para Gilbert
-
 En 2019 comencé un taller con amigos. Para dinamizarlo, preparé una caja con tarjetas divididas en tres grupos: **sustantivos**, **adjetivos** y **verbos**. La dinámica consistía en extraer una palabra de cada grupo y formar una frase del tipo: **sujeto** + **adjetivo** debe **verbo**. Esa frase funcionaba como una consigna abierta que orientaba el relato. En el primer taller descubrí que transportar la caja resultaba incómodo. Decidí trasladar la idea a un formato digital. Como entonces no sabía programar, la primera versión de Gilbert fue una hoja de Excel.
 
 Durante un *bootcamp* de Ciencia de Datos desarrollé una versión en Python 3 utilizando archivos `json`. Durante un tiempo fue un conjunto de funciones poco ordenadas en un cuaderno de Jupyter, versión que aún conservo como recordatorio del proceso de aprendizaje.
 
 En el verano de 2021, con menos carga de trabajo y tras aprender a usar *Streamlit*, convertí el generador en una pequeña aplicación web para facilitar su uso.
 
-## El curioso origen del nombre
+## El origen del nombre
 
 «¿Por qué Gilbert?» es una pregunta que me han hecho varias veces. La respuesta se remonta a antiguos proyectos personales de escritura.
 
