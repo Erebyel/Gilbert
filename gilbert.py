@@ -137,7 +137,6 @@ st.markdown('<div class="subtitle">Generador de frases aleatorias para inspirart
 #--   Botones
 proyecto = st.sidebar.button('ℹ️ Detalles del proyecto')
 desarrollo = st.sidebar.button('🛠️ Desarrollo de Gilbert')
-st.sidebar.divider()
 mostrar_reglas = st.sidebar.button('📜 Reglas del juego')
 
 ##--- Rutina del programa
