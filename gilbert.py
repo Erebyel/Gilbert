@@ -185,6 +185,9 @@ with control_col2:
 
 if comenzar:
     guardar_resultado(fichero)
+    
+if mostrar_reglas:
+    st.session_state["panel_activo"] = "reglas"
 
 mostrar_resultado()
 
