@@ -1,4 +1,4 @@
-
+   
 Gilbert es un generador de ideas aleatorias que nació como herramienta para el taller de escritura creativa que inicié a principios de 2019. Usarlo es sencillo. Se presenta en tres niveles de dificultad: **fácil**, **normal** y **difícil**. En cada uno aumenta la complejidad y los requisitos del texto.
 
 #### Fácil
