@@ -16,9 +16,12 @@ BASE_DIR = Path(__file__).resolve().parent
 def load_frase():
     return pd.read_csv(BASE_DIR / 'data' / 'frase.csv', encoding='utf-8')
 
-frase = load_frase()
+@st.cache_data
+def load_retos():
+    return pd.read_csv(BASE_DIR / 'data' / 'retos.csv', encoding='utf-8')
 
-retos = {'Retos': ['Yo no tengo muy claro que Ana tenga una ánfora, pero eso da igual, porque lo que sí sé es que tienes que hacer una anáfora', 'Alíviate o no te alivies, altérate o no te alteres, pero haz que tu texto sea aliterado', 'Qué paradójico sería que tu texto no tuviese una paradoja', 'Era como… la descripción que has hecho. Ex-ac-ta-men-te', 'Este reto es un alivio, te permite la elipsis de 1 palabra que te haya salido como obligatoria para tu texto. Elige sabiamente', 'Este reto es un alivio, te permite la elipsis de 2 palabras que te hayan salido como obligatorias para tu texto. Elige sabiamente', 'Este reto es un alivio, te permite la elipsis de 3 palabras que te hayan salido como obligatorias para tu texto. Elige sabiamente', 'Este reto es un alivio, te permite la elipsis de 4 palabras que te hayan salido como obligatorias para tu texto. Elige sabiamente', '¿Quién conoce el futuro? Bueno, pues tendrás que imaginártelo', 'Me da igual que tengas que incluir una lavadora, tu texto debe enmarcarse en la época clásica', 'Me importa poco que tu protagonista sea una impresora 3D, tus protagonistas están en la Edad Media', 'En una época donde existía la magia… tu texto estaría en su contexto correcto', 'Si no te ríes al leerlo, no molas porque no es comedia', 'Seguro que, gracias a tu emotiva oda, el protagonista de tu historia será recordado eternamente', 'Ni Ulises está a la altura de tu epopeya', 'Don Quijote estaría orgulloso de tu aporte al noble arte de las historias de caballería', '¿A quién no le gusta viajar? Nos vamos a visitar otro planeta en este viaje intergaláctico', '¿Has soñado con viajes en el tiempo? Quién no…', '¿Estás preparado? Te vas a embarcar en un camino del héroe', 'Los escritores a veces parece que no saben hacerlo, yo que sé… mira, tú usa frases simples porque no puedes usar  yuxtaposiciones ni subordinadas ni coordinadas.', '¡Te has librado! Eres libre de restricciones', 'Perdona, pero no me equivoqué al decir que tenías que escribir una antanaclasis', 'Este aire suena como una sinestesia, ¿no os parece?', 'No es dislexia, es un sinécdoque, ¡que no te enteras!', '¡Te has librado! Eres libre de restricciones', '¡No corras tanto! No puedes escribir más de 50 palabras', '¡No corras tanto! No puedes escribir más de 100 palabras', '¡No corras tanto! No puedes escribir más de 150 palabras', 'Tic-Tac Solo tienes 10 minutos para escribir ¡Rápido!', 'Y dije… que tu texto sea un diálogo', '¿No es verdad, ángel de amor, que en verso se escribe mejor?', 'Tiene que parecer un ensayo, no serlo, porque de esto sé que no tienes ni idea', 'A ver, no te alarmes, pero debes hacer una metáfora con lo que tengas', '¿Cuántas líneas tiene ese papel? Bueno, pues como mucho, puedes llenar 20 líneas', '¿Cuántas líneas tiene ese papel? Bueno, pues como mucho, puedes llenar 30 líneas', '¿Cuántas líneas tiene ese papel? Bueno, pues como mucho, puedes llenar 40 líneas', 'La prosa ha muerto, escríbeme un poema', 'Esta es difícil. Tu protagonista es ahora el antagonista… debe ser una tragedia, porque triunfa frente al bien', 'Esto es como cuando tienes que hacer un símil…', 'Tu protagonista se convierte en un lema del diccionario, ahora tienes que definirlo sin nombrarlo en ningún momento', 'Me apetece escuchar esa canción, sí, ya sabes… la que acabas de escribir', 'Los mitos griegos molan mucho, haz que el tuyo pueda colar por uno.', 'Encuentras la hoja de una novela durante un paseo matutino, ¿qué tiene escrito? ¿Podrías trascribirlo para mi?', 'Sepa vuesa merced que vuestras palabras suenan tan cercanas para alguien de mi uso, gracias por escribir unas líneas en castellano antiguo', 'Edgar Allan Poe no existe, ¿quién va a decirnos ahora "nunca más"?', 'Ni el señor gray está a la altura de tu perversión, haz que se corra (la tinta, la tinta)', 'Esto es un tema serio, te lo ha pedido un catedrático para la clase que tiene mañana.', 'Con la venia de su señoría, esa ley que usted cita y describe todavía no la he encontrado en el Código Civil.', 'A Spielberg le ha encantado tu idea, pero lo que has escrito solo da para un corto.', 'Más te vale que tu historia tenga una moraleja']}
+frase = load_frase()
+retos = load_retos()
 
 ##---------------------- Funciones
 def idea():
@@ -162,15 +165,6 @@ def mostrar_resultado():
 
 if "panel_activo" not in st.session_state:
     st.session_state["panel_activo"] = "reglas"
-if comenzar:
-    guardar_resultado(fichero)
-
-mostrar_resultado()
-
-if st.button('Descubre una nueva idea'):
-    guardar_resultado('difícil')
-    mostrar_resultado()
-st.markdown('<div class="card">' + reglas + '</div>', unsafe_allow_html=True)
 
 if proyecto:
     st.session_state["panel_activo"] = "proyecto"
@@ -196,10 +190,6 @@ if comenzar:
     guardar_resultado(fichero)
 
 mostrar_resultado()
-
-if nueva_idea:
-    guardar_resultado('difícil')
-    mostrar_resultado()
 
 if st.session_state["panel_activo"] == "proyecto":
     st.markdown('<div class="card">' + sobre_proyecto + '</div>', unsafe_allow_html=True)
